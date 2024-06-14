@@ -72,8 +72,9 @@ public partial class TextBoxInPanel : Panel
 		}
 	}
 
+	[Browsable(true)]
 	[Category(customCategory)]
-	new public string Text
+	public override string Text
 	{
 		get { return textBox.Text; }
 		set { textBox.Text = value; }
