@@ -17,9 +17,9 @@ public partial class TextBoxInPanel : Panel
 	public TextBoxInPanel()
 	{
 		// Configure the panel
-		this.Padding = new Padding(BorderSize); // Use padding to create space for the border
-		this.BackColor = BorderColor; // The background color of the panel serves as the border color
-		this.AutoSize = false; // Set AutoSize to false to manually set the size
+		Padding = new Padding(BorderSize); // Use padding to create space for the border
+		BackColor = BorderColor; // The background color of the panel serves as the border color
+		AutoSize = false; // Set AutoSize to false to manually set the size
 
 		// Configure the TextBox
 		textBox.Dock = DockStyle.Fill; // Fill the panel, leaving space for the border based on padding
@@ -30,7 +30,7 @@ public partial class TextBoxInPanel : Panel
 
 		// Set a default size for the panel that is larger than the default TextBox size
 		// to account for the border. This size can be adjusted based on your design needs.
-		this.Size = new Size(textBox.Width + Padding.Left + Padding.Right, textBox.Height + Padding.Top + Padding.Bottom);
+		Size = new Size(textBox.Width + Padding.Left + Padding.Right, textBox.Height + Padding.Top + Padding.Bottom);
 
 		// Adjust the size of the panel to accommodate the TextBox and border
 		AdjustPanelSize();
@@ -43,7 +43,7 @@ public partial class TextBoxInPanel : Panel
 		set
 		{
 			borderSize = value;
-			this.Padding = new Padding(borderSize);
+			Padding = new Padding(borderSize);
 			AdjustPanelSize();
 			Invalidate(); // Redraw to reflect the change
 		}
@@ -56,7 +56,7 @@ public partial class TextBoxInPanel : Panel
 		set
 		{
 			borderColor = value;
-			this.BackColor = borderColor;
+			BackColor = borderColor;
 			Invalidate(); // Redraw to reflect the change
 		}
 	}
@@ -90,23 +90,21 @@ public partial class TextBoxInPanel : Panel
 	protected override void OnEnter(EventArgs e)
 	{
 		base.OnEnter(e);
-		this.BackColor = activeBorderColor;
+		BackColor = activeBorderColor;
 	}
 
 	protected override void OnLeave(EventArgs e)
 	{
 		base.OnLeave(e);
-		this.BackColor = borderColor;
+		BackColor = borderColor;
 	}
 
 	private void AdjustPanelSize()
 	{
-		// Calculate the panel size based on the TextBox size and the border size
 		int newWidth = textBox.Width + (BorderSize * 2);
 		int newHeight = textBox.Height + (BorderSize * 2);
 
-		// Update the panel size
-		this.Size = new Size(newWidth, newHeight);
+		Size = new Size(newWidth, newHeight);
 	}
 
 

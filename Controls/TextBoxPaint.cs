@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace ChyronCustomTextBox.Controls;
+
+using System;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ChyronCustomTextBox.Controls;
 public partial class TextBoxPaint : TextBox
 {
 	private const int WM_NCPAINT = 0x85;
@@ -64,7 +60,6 @@ public partial class TextBoxPaint : TextBox
 		get => m_BorderSize;
 		set
 		{
-			//var newValue = Math.Max(Math.Min(value, 2), 1);
 			if (m_BorderSize != value)
 			{
 				m_BorderSize = value;

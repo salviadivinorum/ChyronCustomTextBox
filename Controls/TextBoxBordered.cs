@@ -1,7 +1,8 @@
-﻿using System.ComponentModel;
+﻿namespace ChyronCustomTextBox.Controls;
+
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace ChyronCustomTextBox.Controls;
 public partial class TextBoxBordered : TextBox
 {
 	private int borderSize = 1;
@@ -84,7 +85,7 @@ public partial class TextBoxBordered : TextBox
 	}
 
 
-	// from Stackoverflow
+	// Stackoverflow
 
 	[DllImport("user32")]
 	private static extern IntPtr GetWindowDC(IntPtr hwnd);

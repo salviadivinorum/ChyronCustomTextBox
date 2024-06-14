@@ -62,7 +62,7 @@ public partial class TextBoxDerived : TextBox
 		set
 		{
 			drawBorder = value;
-			this.Invalidate();
+			Invalidate();
 		}
 	}
 
@@ -73,9 +73,9 @@ public partial class TextBoxDerived : TextBox
 		{
 			using (Graphics g = e.Graphics)
 			{
-				using (Pen pen = new Pen(this.Focused ? activeBorderColor : borderColor, borderSize))
+				using (Pen pen = new Pen(Focused ? activeBorderColor : borderColor, borderSize))
 				{
-					g.DrawRectangle(pen, 0, 0, this.Width - 1, this.Height - 1);
+					g.DrawRectangle(pen, 0, 0, Width - 1, Height - 1);
 				}
 			}
 		}
@@ -97,12 +97,5 @@ public partial class TextBoxDerived : TextBox
 	{
 		base.OnResize(e);
 		Invalidate();
-	}
-
-
-	protected override void WndProc(ref Message m)
-	{
-		
-		base.WndProc(ref m);
 	}
 }
