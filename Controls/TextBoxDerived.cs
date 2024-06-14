@@ -10,8 +10,9 @@ public partial class TextBoxDerived : TextBox
 	private int borderSize = 1;
 	private Color borderColor = Color.Blue;
 	private Color activeBorderColor = Color.Red;
+	private bool drawBorder = true;
 
-	private string customCategory = "Custom";
+	private const string customCategory = "Custom";
 
 	public TextBoxDerived()
 	{
@@ -20,7 +21,7 @@ public partial class TextBoxDerived : TextBox
 		SetStyle(ControlStyles.UserPaint, true);
 	}
 
-	[Category("Custom")]
+	[Category(customCategory)]
 	public int BorderSize
 	{
 		get { return borderSize; }
@@ -32,7 +33,7 @@ public partial class TextBoxDerived : TextBox
 		}
 	}
 
-	[Category("Custom")]
+	[Category(customCategory)]
 	public Color BorderColor
 	{
 		get { return borderColor; }
@@ -43,7 +44,7 @@ public partial class TextBoxDerived : TextBox
 		}
 	}
 
-	[Category("Custom")]
+	[Category(customCategory)]
 	public Color ActiveBorderColor
 	{
 		get { return activeBorderColor; }
@@ -54,18 +55,31 @@ public partial class TextBoxDerived : TextBox
 		}
 	}
 
-	protected override void OnPaint(PaintEventArgs e)
+	[Category(customCategory)]
+	public bool DrawBorder
 	{
-		base.OnPaint(e);
-		// Use active border color when the control is focused, otherwise use the regular border color.
-		Color currentBorderColor = Focused ? activeBorderColor : borderColor;
-		using (Graphics g = e.Graphics)
-		using (Pen pen = new Pen(currentBorderColor, borderSize))
+		get { return drawBorder; }
+		set
 		{
-			g.DrawRectangle(pen, 0, 0, Width - 1, Height - 1);
+			drawBorder = value;
+			Invalidate();
 		}
 	}
 
+	protected override void OnPaint(PaintEventArgs e)
+	{
+		base.OnPaint(e);
+		if (drawBorder)
+		{
+			using (Graphics g = e.Graphics)
+			{
+				using (Pen pen = new Pen(Focused ? activeBorderColor : borderColor, borderSize))
+				{
+					g.DrawRectangle(pen, 0, 0, Width - 1, Height - 1);
+				}
+			}
+		}
+	}
 
 	protected override void OnEnter(EventArgs e)
 	{
@@ -84,5 +98,4 @@ public partial class TextBoxDerived : TextBox
 		base.OnResize(e);
 		Invalidate();
 	}
-
 }
