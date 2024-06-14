@@ -43,6 +43,8 @@ partial class MainWindow
 		label5 = new Label();
 		textBoxDerived4 = new Controls.TextBoxDerived();
 		label6 = new Label();
+		textBox1 = new TextBox();
+		textBoxInPanel1 = new Controls.TextBoxInPanel();
 		panel1.SuspendLayout();
 		panel3.SuspendLayout();
 		panel4.SuspendLayout();
@@ -209,11 +211,33 @@ partial class MainWindow
 		label6.TabIndex = 1;
 		label6.Text = "Enter value:";
 		// 
+		// textBox1
+		// 
+		textBox1.Location = new Point(86, 165);
+		textBox1.Name = "textBox1";
+		textBox1.Size = new Size(118, 23);
+		textBox1.TabIndex = 6;
+		// 
+		// textBoxInPanel1
+		// 
+		textBoxInPanel1.ActiveBorderColor = Color.Red;
+		textBoxInPanel1.BackColor = Color.Blue;
+		textBoxInPanel1.BorderColor = Color.Blue;
+		textBoxInPanel1.BorderSize = 8;
+		textBoxInPanel1.Location = new Point(273, 156);
+		textBoxInPanel1.Multiline = true;
+		textBoxInPanel1.Name = "textBoxInPanel1";
+		textBoxInPanel1.Padding = new Padding(8);
+		textBoxInPanel1.Size = new Size(204, 55);
+		textBoxInPanel1.TabIndex = 7;
+		// 
 		// MainWindow
 		// 
 		AutoScaleDimensions = new SizeF(7F, 15F);
 		AutoScaleMode = AutoScaleMode.Font;
 		ClientSize = new Size(643, 223);
+		Controls.Add(textBoxInPanel1);
+		Controls.Add(textBox1);
 		Controls.Add(panel5);
 		Controls.Add(panel4);
 		Controls.Add(panel3);
@@ -230,6 +254,7 @@ partial class MainWindow
 		panel5.ResumeLayout(false);
 		panel5.PerformLayout();
 		ResumeLayout(false);
+		PerformLayout();
 	}
 
 	#endregion
@@ -249,4 +274,6 @@ partial class MainWindow
 	private Controls.TextBoxDerived textBoxDerived4;
 	private Label label2;
 	private Label label5;
+	private TextBox textBox1;
+	private Controls.TextBoxInPanel textBoxInPanel1;
 }

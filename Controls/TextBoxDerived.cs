@@ -99,4 +99,10 @@ public partial class TextBoxDerived : TextBox
 		Invalidate();
 	}
 
+
+	protected override void WndProc(ref Message m)
+	{
+		
+		base.WndProc(ref m);
+	}
 }
