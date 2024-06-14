@@ -18,8 +18,7 @@ public partial class TextBoxPaint : TextBox
 
 	public TextBoxPaint()
 	{
-		// InitializeComponent();
-		// BorderStyle = ButtonBorderStyle.None;
+		BorderStyle = ButtonBorderStyle.None;
 		SetStyle(ControlStyles.UserPaint, true);
 	}
 

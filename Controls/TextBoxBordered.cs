@@ -87,6 +87,9 @@ public partial class TextBoxBordered : TextBox
 
 	// Stackoverflow
 
+	private const int WM_NCCALCSIZE = 0x83;
+	private const int WM_NCPAINT = 0x85;
+
 	[DllImport("user32")]
 	private static extern IntPtr GetWindowDC(IntPtr hwnd);
 	struct RECT
@@ -106,10 +109,11 @@ public partial class TextBoxBordered : TextBox
 
 	protected override void WndProc(ref Message m)
 	{
-		//We have to change the clientsize to make room for borders
-		//if not, the border is limited in how thick it is.
-		if (m.Msg == 0x83) //WM_NCCALCSIZE   
+		if (m.Msg == WM_NCCALCSIZE)
 		{
+			// this message is NEVER bubbled up to this derived control because the base control is consuming it
+			// Windows OS bypasses or internally handles the message for a TextBox technically wrapper
+
 			if (m.WParam == IntPtr.Zero)
 			{
 				RECT rect = (RECT)Marshal.PtrToStructure(m.LParam, typeof(RECT));
@@ -129,7 +133,7 @@ public partial class TextBoxBordered : TextBox
 				Marshal.StructureToPtr(rects, m.LParam, false);
 			}
 		}
-		if (m.Msg == 0x85) //WM_NCPAINT    
+		if (m.Msg == WM_NCPAINT)   
 		{
 			IntPtr wDC = GetWindowDC(Handle);
 			using (Graphics g = Graphics.FromHdc(wDC))
